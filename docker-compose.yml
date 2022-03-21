@@ -1,0 +1,37 @@
+version: '3'  
+
+services:  
+  db:   
+    image: postgres:latest  
+    env_file: ./postgresql.env  
+    volumes:  
+      - "db_data:/var/lib/postgresql/data"  
+      - "./backup:/mnt/backup"  
+    networks:  
+      - shared_net  
+    ports:  
+      - 5432:5432  
+
+  web:  
+    privileged: true
+    volumes:  
+      - "db_data:/var/lib/postgresql/data"  
+      - "app_data:/var/www/html"  
+      - "./backup:/mnt/backup"  
+    build: ./php/  
+    networks:  
+      - shared_net  
+    expose:
+      - 80
+    env_file: ./web.env  
+
+    depends_on:
+      - nginx-proxy
+
+networks:  
+  shared_net: 
+    external: true 
+
+volumes:  
+  app_data:  
+  db_data:  
