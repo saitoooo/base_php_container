@@ -22,7 +22,6 @@ RUN pecl install xdebug \
   && docker-php-ext-enable xdebug
 
 COPY ./php.ini /usr/local/etc/php/php.ini
-COPY ./settings.json /var/www/html/.vscode/settings.json
 
 ENV PGHOST=db  
 ENV LC_ALL=ja_JP.UTF-8  

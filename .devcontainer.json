@@ -3,5 +3,14 @@
     "dockerComposeFile": "docker-compose.yml",  
     "service": "web",  
     "workspaceFolder": "/var/www/html",  
-    "extensions": []  
+    "extensions": [
+        "xdebug.php-debug",
+        "ikappas.phpcs",
+        "junstyle.php-cs-fixer",
+        "bmewburn.vscode-intelephense-client"
+    ],
+    "settings": {
+        "phpcs.standard": "PSR2",
+        "php-cs-fixer.onsave": true
+    }
 }  
